@@ -4,9 +4,18 @@
   "main": "index.js",
   "author": "Danh",
   "license": "MIT",
+  "scripts": {
+    "start-lottery": "truffle exec ./scheduler/start-lottery.js"
+  },
   "dependencies": {
     "@chainlink/contracts": "^0.4.0",
     "@openzeppelin/contracts": "^4.5.0",
+    "bignumber.js": "^9.0.2",
     "ethers": "^5.6.2"
+  },
+  "devDependencies": {
+    "chai": "^4.3.6",
+    "chai-events": "^0.0.3",
+    "ethereum-waffle": "^3.4.4"
   }
 }

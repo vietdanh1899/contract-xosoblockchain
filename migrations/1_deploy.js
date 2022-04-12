@@ -4,7 +4,7 @@ const mock_erc20Contract = artifacts.require("ERC20Mock");
 const randGenContract = artifacts.require("RandomNumberGenerator");
 const mock_vrfCoordContract = artifacts.require("Mock_VRFCoordinator");
 
-const { lotto } = require("./settings.js")
+const { lotto } = require("../settings.js")
 
 module.exports = async function (deployer) {
   var initialMoney = web3.utils.toWei('100');
@@ -51,8 +51,7 @@ module.exports = async function (deployer) {
   console.table([
     lotteryLog,
     lotteryNftLog,
-    usdtLog, 
+    usdtLog,
     linkLog
-]);
-  // await deployer.deploy(TicketNFT, "https://testing.com/tokens/\{id\}", "0xCd49383aE4f7D47cd61366C07ea21170E9b9943a");
+  ]);
 };
