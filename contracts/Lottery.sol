@@ -46,7 +46,7 @@ contract Lottery is ILottery, Ownable, Initializable, ReentrancyGuard {
     // Counter for lottery IDs
     uint256 private currentLotteryId_;
     // The amount of usdt for prize money
-    uint256 internal prizePool;
+    uint256 internal prizePool_;
 
     // Represents the status of the lottery
     enum Status {
@@ -56,6 +56,7 @@ contract Lottery is ILottery, Ownable, Initializable, ReentrancyGuard {
     }
     // All the needed info around a lottery
     struct LottoInfo {
+        uint256 prizePool;
         uint256 lotteryID; // ID for lotto
         Status lotteryStatus; // Status for lotto
         uint256 amountCollectedInUSDT; // The amount of usdt for prize money
@@ -72,6 +73,8 @@ contract Lottery is ILottery, Ownable, Initializable, ReentrancyGuard {
     event LotteryOpen(uint256 lotteryId, uint256 ticketSupply);
 
     event LotteryClose(uint256 lotteryId, uint256 ticketSupply);
+
+    event PrizePoolChanged(uint256 currentPrizePool, uint256 currentLotteryId);
 
     //-------------------------------------------------------------------------
     // MODIFIERS
@@ -177,6 +180,7 @@ contract Lottery is ILottery, Ownable, Initializable, ReentrancyGuard {
         lotteryId = currentLotteryId_;
         // Saving data in struct
         LottoInfo memory newLottery = LottoInfo({
+            prizePool: prizePool_,
             lotteryID: lotteryId,
             lotteryStatus: Status.Open,
             amountCollectedInUSDT: 0,
@@ -238,9 +242,11 @@ contract Lottery is ILottery, Ownable, Initializable, ReentrancyGuard {
         uint256 totalCost = costToBuyTickets(_lotteryId, _numberOfTickets);
         // Transfers the required cake to this contract
         usdt_.safeTransferFrom(msg.sender, address(this), totalCost);
+        prizePool_ = prizePool_.add(totalCost);
+
         // Increment the total amount collected for the lottery round
         allLotteries_[_lotteryId].amountCollectedInUSDT += totalCost;
-        prizePool = prizePool.add(totalCost);
+        allLotteries_[_lotteryId].prizePool = prizePool_;
         // Batch mints the user their tickets
         nft_.Mint(
             msg.sender,
@@ -248,6 +254,8 @@ contract Lottery is ILottery, Ownable, Initializable, ReentrancyGuard {
             _numberOfTickets,
             _chosenNumbersForEachTicket
         );
+
+        emit PrizePoolChanged(prizePool_, currentLotteryId_);
     }
 
     /**
@@ -308,25 +316,31 @@ contract Lottery is ILottery, Ownable, Initializable, ReentrancyGuard {
                 uint256 amountToWithdrawToTreasury = 0;
                 uint256 winAmountPerTicket = 0;
                 winAmountPerTicket =
-                    (prizePool *
+                    (prizePool_ *
                         (10000 - allLotteries_[_lotteryId].treasuryFee)) /
                     10000 /
                     totalWinningTickets;
                 amountToShareToWinners =
                     winAmountPerTicket *
                     totalWinningTickets;
-                amountToWithdrawToTreasury = prizePool - amountToShareToWinners;
+                amountToWithdrawToTreasury =
+                    prizePool_ -
+                    amountToShareToWinners;
 
                 // Transfer prize to winners
                 for (uint256 i = 0; i < winningTickets.length; i++) {
+                    uint256 amountToTransferToThisWinner = winAmountPerTicket *
+                        winningTickets[i].numberOfTickets;
                     usdt_.safeTransfer(
                         winningTickets[i].owner,
-                        winAmountPerTicket * winningTickets[i].numberOfTickets
+                        amountToTransferToThisWinner
                     );
+                    prizePool_ = prizePool_.sub(amountToTransferToThisWinner);
                 }
 
                 // Transfer fee to treasury address
                 usdt_.safeTransfer(treasuryAddress, amountToWithdrawToTreasury);
+                prizePool_ = prizePool_.sub(amountToWithdrawToTreasury);
             }
 
             // Set lottery status completed

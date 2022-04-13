@@ -6,9 +6,7 @@ const mock_vrfCoordContract = artifacts.require("Mock_VRFCoordinator");
 
 const { lotto } = require("../settings.js")
 const chai = require("chai");
-const { solidity } = require("ethereum-waffle");
 
-chai.use(solidity);
 const expect = chai.expect;
 
 describe("Test ERC20Mock contract", () => {
