@@ -37,6 +37,7 @@ const deployContracts = async () => {
         ticketNftInstance.address,
         randGenInstance.address
     );
+    await lotteryInstance.setOperatorAndTreasuryAddresses(addr[0], addr[0]);
     // Sending link to lottery
     await linkInstance.transfer(
         randGenInstance.address,
@@ -45,7 +46,7 @@ const deployContracts = async () => {
     // Saving the info to be logged in the table (deployer address)
     var usdtLog = { Label: "Deployed Mock USDT Token Address", Info: usdtInstance.address };
     var lotteryLog = { Label: "Deployed Lottery Address", Info: lotteryInstance.address };
-    var lotteryNftLog = { Label: "Deployed Lottery NFT Address", Info: ticketNftInstance.address };
+    var lotteryNftLog = { Label: "Deployed Ticket NFT Address", Info: ticketNftInstance.address };
     var linkLog = { Label: "Deployed Mock lINK Address", Info: linkInstance.address };
 
     console.table([

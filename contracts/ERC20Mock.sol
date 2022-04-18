@@ -39,4 +39,16 @@ contract ERC20Mock is ERC20 {
     ) public {
         _approve(owner, spender, value);
     }
+
+    /**
+     * @dev This function is only here to accommodate nested Link token
+     *      functionality required in mocking the random number calls.
+     */
+    function transferAndCall(
+        address to,
+        uint256 value,
+        bytes calldata data
+    ) external pure returns (bool success) {
+        return true;
+    }
 }

@@ -45,7 +45,7 @@ module.exports = async function (deployer) {
   // Saving the info to be logged in the table (deployer address)
   var usdtLog = { Label: "Deployed Mock USDT Token Address", Info: usdtInstance.address };
   var lotteryLog = { Label: "Deployed Lottery Address", Info: lotteryInstance.address };
-  var lotteryNftLog = { Label: "Deployed Lottery NFT Address", Info: ticketNftInstance.address };
+  var lotteryNftLog = { Label: "Deployed Ticket NFT Address", Info: ticketNftInstance.address };
   var linkLog = { Label: "Deployed Mock lINK Address", Info: linkInstance.address };
 
   console.table([

@@ -8,15 +8,19 @@ const lotto = {
     },
     newLotto: {
         cost: ethers.utils.parseUnits("1", 18), // 1 USDT
-        closeIncrease: 10000,
-        treasury: 2000 // 20%
+        closeIncrease: 86400,
+        treasury: 2000, // 20%
+        blankWinningNumbers: 111
     },
     events: {
         new: "LotteryOpen",
         mint: "NewBatchMint",
         request: "requestNumbers",
         prize: "PrizePoolChanged"
-    }
+    },
+    draw: {
+        random: 18
+    },
 }
 
 module.exports = {

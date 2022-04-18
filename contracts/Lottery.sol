@@ -76,6 +76,8 @@ contract Lottery is ILottery, Ownable, Initializable, ReentrancyGuard {
 
     event PrizePoolChanged(uint256 currentPrizePool, uint256 currentLotteryId);
 
+    event RequestNumbers(uint256 lotteryId, bytes32 requestId);
+
     //-------------------------------------------------------------------------
     // MODIFIERS
     //-------------------------------------------------------------------------
@@ -161,7 +163,7 @@ contract Lottery is ILottery, Ownable, Initializable, ReentrancyGuard {
         uint256 _costPerTicket,
         uint256 _closingTimestamp,
         uint256 _treasuryFee
-    ) external onlyOwner returns (uint256 lotteryId) {
+    ) external onlyOperator returns (uint256 lotteryId) {
         require(_costPerTicket != 0, "Prize or cost cannot be 0");
         require(
             block.timestamp < _closingTimestamp,
@@ -208,7 +210,7 @@ contract Lottery is ILottery, Ownable, Initializable, ReentrancyGuard {
         uint256 _lotteryId,
         uint8 _numberOfTickets,
         uint8 _chosenNumbersForEachTicket
-    ) external notContract {
+    ) external notContract nonReentrant {
         // Ensuring the lottery is within a valid time
         require(
             getCurrentTime() >= allLotteries_[_lotteryId].startingTimestamp,
@@ -266,21 +268,23 @@ contract Lottery is ILottery, Ownable, Initializable, ReentrancyGuard {
     function closeLottery(uint256 _lotteryId)
         external
         onlyOperator
-        nonReentrant
+        
     {
         require(
             allLotteries_[_lotteryId].lotteryStatus == Status.Open,
             "Lottery not open"
         );
         require(
-            block.timestamp > allLotteries_[_lotteryId].closingTimestamp,
+            block.timestamp >= allLotteries_[_lotteryId].closingTimestamp,
             "Lottery not over"
         );
 
         allLotteries_[_lotteryId].lotteryStatus = Status.Closed;
 
         // Request a random number from the generator
-        randomGenerator_.getRandomNumber(_lotteryId);
+        requestId_ = randomGenerator_.getRandomNumber(_lotteryId);
+
+        emit RequestNumbers(_lotteryId, requestId_);
     }
 
     function numbersDrawn(
@@ -303,6 +307,7 @@ contract Lottery is ILottery, Ownable, Initializable, ReentrancyGuard {
             // ... Transfer prize here
             (
                 uint256 totalWinningTickets,
+                uint8 finalNumber,
                 ITicketNFT.TicketInfo[] memory winningTickets
             ) = nft_.getWinningTickets(
                     _lotteryId,
@@ -345,6 +350,7 @@ contract Lottery is ILottery, Ownable, Initializable, ReentrancyGuard {
 
             // Set lottery status completed
             allLotteries_[_lotteryId].lotteryStatus = Status.Completed;
+            allLotteries_[_lotteryId].winningNumbers = finalNumber;
         }
 
         emit LotteryClose(_lotteryId, nft_.getCurrentTicketId());

@@ -25,10 +25,15 @@ interface ITicketNFT {
         view
         returns (address);
 
-    function getUserTickets(uint256 _lotteryId, address _user)
+    function getUserTicketIds(uint256 _lotteryId, address _user)
         external
         view
         returns (uint256[] memory);
+
+    function getUserTickets(uint256 _lotteryId, address _user)
+        external
+        view
+        returns (TicketInfo[] memory);
 
     function getTicketInfo(uint256 _ticketID)
         external
@@ -50,5 +55,11 @@ interface ITicketNFT {
         uint256 _lotteryId,
         uint256 _randomNumber,
         uint256 _firstTicketId
-    ) external returns (uint256, TicketInfo[] memory);
+    )
+        external
+        returns (
+            uint256 totalTickets,
+            uint8 finalNumber,
+            TicketInfo[] memory
+        );
 }

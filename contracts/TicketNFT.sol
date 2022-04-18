@@ -81,12 +81,27 @@ contract TicketNFT is ITicketNFT, ERC1155 {
         return ticketInfo_[_ticketID].owner;
     }
 
-    function getUserTickets(uint256 _lotteryId, address _user)
+    function getUserTicketIds(uint256 _lotteryId, address _user)
         external
         view
         returns (uint256[] memory)
     {
         return userTickets_[_user][_lotteryId];
+    }
+
+    function getUserTickets(uint256 _lotteryId, address _user)
+        external
+        view
+        returns (TicketInfo[] memory)
+    {
+        uint256[] memory userTicketIds = userTickets_[_user][_lotteryId];
+        TicketInfo[] memory userTickets = new TicketInfo[](
+            userTicketIds.length
+        );
+        for (uint256 i = 0; i < userTicketIds.length; i++) {
+            userTickets[i] = ticketInfo_[userTicketIds[i]];
+        }
+        return userTickets;
     }
 
     function getTicketInfo(uint256 _ticketID)
@@ -132,14 +147,23 @@ contract TicketNFT is ITicketNFT, ERC1155 {
 
     /**
      * @return uint256: Total winning tickets
+     * @return uint8: Final number
      * @return TicketInfo[]: TicketInfo of winning tickets
      */
     function getWinningTickets(
         uint256 _lotteryId,
         uint256 _randomNumber,
         uint256 _firstTicketId
-    ) external onlyLotto returns (uint256, TicketInfo[] memory) {
-        uint8 finalNumber = uint8(_randomNumber.div(100));
+    )
+        external
+        onlyLotto
+        returns (
+            uint256,
+            uint8,
+            TicketInfo[] memory
+        )
+    {
+        uint8 finalNumber = uint8(_randomNumber.mod(100));
         uint256 totalTickets = 0;
         for (uint256 i = _firstTicketId; i <= currentTicketId; i++) {
             if (
@@ -150,6 +174,6 @@ contract TicketNFT is ITicketNFT, ERC1155 {
                 winningTickets.push(ticketInfo_[i]);
             }
         }
-        return (totalTickets, winningTickets);
+        return (totalTickets, finalNumber, winningTickets);
     }
 }
