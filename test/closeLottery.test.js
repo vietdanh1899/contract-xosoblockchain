@@ -1,5 +1,5 @@
 const BigNumber = require("bignumber.js");
-const { lotto } = require("../settings.js");
+const lotto = require("../settings.json");
 const deployContracts = require("./utils/deployContracts.js");
 
 const truffleAssert = require('truffle-assertions');
@@ -49,7 +49,7 @@ describe("Test close lottery", () => {
         // Converting to a BigNumber for manipulation 
         let timeStamp = new BigNumber(currentTime.toString());
         const startLog = await lotteryInstance.startLottery(
-            lotto.newLotto.cost,
+            web3.utils.toWei(lotto.newLotto.cost),
             timeStamp.plus(lotto.newLotto.closeIncrease).toString(),
             lotto.newLotto.treasury
         );
@@ -75,7 +75,7 @@ describe("Test close lottery", () => {
         const closeLog = await lotteryInstance.closeLottery(1);
 
         let requestId = closeLog.logs[0].args.requestId.toString();
-  
+
         // Mocking the VRF Coordinator contract for random request fulfilment 
         await mock_vrfCoordInstance.callBackWithRandomness(
             requestId,

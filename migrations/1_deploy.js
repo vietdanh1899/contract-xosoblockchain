@@ -4,7 +4,7 @@ const mock_erc20Contract = artifacts.require("ERC20Mock");
 const randGenContract = artifacts.require("RandomNumberGenerator");
 const mock_vrfCoordContract = artifacts.require("Mock_VRFCoordinator");
 
-const { lotto } = require("../settings.js")
+const lotto = require("../settings.json")
 
 module.exports = async function (deployer) {
   var initialMoney = web3.utils.toWei('100');
@@ -16,7 +16,7 @@ module.exports = async function (deployer) {
   let mock_vrfCoordInstance = await mock_vrfCoordContract.new(
     linkInstance.address,
     lotto.chainLink.keyHash,
-    lotto.chainLink.fee
+    web3.utils.toWei(lotto.chainLink.fee)
   );
   let lotteryInstance = await lotteryContract.new(
     usdtInstance.address,
@@ -26,7 +26,7 @@ module.exports = async function (deployer) {
     linkInstance.address,
     lotteryInstance.address,
     lotto.chainLink.keyHash,
-    lotto.chainLink.fee
+    web3.utils.toWei(lotto.chainLink.fee)
   );
   let ticketNftInstance = await ticketNftContract.new(
     "https://testing.com/tokens/\{id\}",
@@ -37,6 +37,7 @@ module.exports = async function (deployer) {
     ticketNftInstance.address,
     randGenInstance.address
   );
+  await lotteryInstance.setOperatorAndTreasuryAddresses(addr[0], addr[0]);
   // Sending link to lottery
   await linkInstance.transfer(
     randGenInstance.address,
@@ -54,4 +55,13 @@ module.exports = async function (deployer) {
     usdtLog,
     linkLog
   ]);
+  
+  lotto.contractAddress.lottery = lotteryInstance.address;
+  lotto.contractAddress.ticketNft = ticketNftInstance.address;
+  lotto.contractAddress.usdt = usdtInstance.address;
+  lotto.contractAddress.link = linkInstance.address;
+  lotto.contractAddress.vrfCoord = mock_vrfCoordInstance.address;
+  lotto.contractAddress.randGen = randGenInstance.address;
+
+  console.log(JSON.stringify(lotto));
 };

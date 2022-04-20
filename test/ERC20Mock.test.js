@@ -4,7 +4,7 @@ const mock_erc20Contract = artifacts.require("ERC20Mock");
 const randGenContract = artifacts.require("RandomNumberGenerator");
 const mock_vrfCoordContract = artifacts.require("Mock_VRFCoordinator");
 
-const { lotto } = require("../settings.js")
+const lotto = require("../settings.json")
 const chai = require("chai");
 
 const expect = chai.expect;

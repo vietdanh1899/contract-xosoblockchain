@@ -5,7 +5,9 @@
   "author": "Danh",
   "license": "MIT",
   "scripts": {
-    "start-lottery": "truffle exec ./scheduler/start-lottery.js"
+    "start-lottery": "truffle exec ./scheduler/start-lottery.js",
+    "close-lottery": "truffle exec ./scheduler/close-lottery.js",
+    "test-close-lottery": "truffle exec ./scheduler/test-close-lottery.js"
   },
   "dependencies": {
     "@chainlink/contracts": "^0.4.0",

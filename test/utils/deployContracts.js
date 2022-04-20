@@ -4,7 +4,7 @@ const mock_erc20Contract = artifacts.require("ERC20Mock");
 const randGenContract = artifacts.require("RandomNumberGenerator");
 const mock_vrfCoordContract = artifacts.require("Mock_VRFCoordinator");
 
-const { lotto } = require("../../settings.js")
+const lotto = require("../../settings.json")
 
 const deployContracts = async () => {
     var initialMoney = web3.utils.toWei('100');
@@ -16,7 +16,7 @@ const deployContracts = async () => {
     mock_vrfCoordInstance = await mock_vrfCoordContract.new(
         linkInstance.address,
         lotto.chainLink.keyHash,
-        lotto.chainLink.fee
+        web3.utils.toWei(lotto.chainLink.fee)
     );
     lotteryInstance = await lotteryContract.new(
         usdtInstance.address,
@@ -26,7 +26,7 @@ const deployContracts = async () => {
         linkInstance.address,
         lotteryInstance.address,
         lotto.chainLink.keyHash,
-        lotto.chainLink.fee
+        web3.utils.toWei(lotto.chainLink.fee)
     );
     ticketNftInstance = await ticketNftContract.new(
         "https://testing.com/tokens/\{id\}",
