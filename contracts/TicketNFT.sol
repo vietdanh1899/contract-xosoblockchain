@@ -6,6 +6,7 @@ import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 import "./SafeMath8.sol";
 import "./ITicketNFT.sol";
+import "./ILottery.sol";
 
 contract TicketNFT is ITicketNFT, ERC1155 {
     // Libraries
@@ -14,10 +15,10 @@ contract TicketNFT is ITicketNFT, ERC1155 {
     using SafeMath8 for uint8;
 
     // State variables
-    address internal lotteryContract_;
+    ILottery internal lotteryContract_;
 
     uint256 internal currentTicketId;
-    TicketInfo[] private winningTickets;
+
     // Token ID => Token information
     mapping(uint256 => TicketInfo) internal ticketInfo_;
     // User address => Lottery ID => Ticket IDs
@@ -31,7 +32,7 @@ contract TicketNFT is ITicketNFT, ERC1155 {
      * @notice  Restricts minting of new tokens to only the lotto contract.
      */
     modifier onlyLotto() {
-        require(msg.sender == lotteryContract_, "Only Lotto can mint");
+        require(msg.sender == address(lotteryContract_), "Only Lotto can call");
         _;
     }
 
@@ -50,7 +51,7 @@ contract TicketNFT is ITicketNFT, ERC1155 {
      */
     constructor(string memory _uri, address _lotto) ERC1155(_uri) {
         // Only Lotto contract will be able to mint new tokens
-        lotteryContract_ = _lotto;
+        lotteryContract_ = ILottery(_lotto);
     }
 
     //-------------------------------------------------------------------------
@@ -90,7 +91,7 @@ contract TicketNFT is ITicketNFT, ERC1155 {
     }
 
     function getUserTickets(uint256 _lotteryId, address _user)
-        external
+        public
         view
         returns (TicketInfo[] memory)
     {
@@ -104,12 +105,68 @@ contract TicketNFT is ITicketNFT, ERC1155 {
         return userTickets;
     }
 
+    function getUserTicketsAllRound(address _user) external view returns (TicketInfo[][] memory) {
+        uint256 currentLotteryId = lotteryContract_.viewCurrentLotteryId();
+        TicketInfo[][] memory tickets = new TicketInfo[][](currentLotteryId);
+        for (uint256 i = 1; i <= currentLotteryId; i++) {
+            tickets[i-1] = getUserTickets(i, _user);
+            //new TicketInfo[](userTickets_[_user][i].length);
+        }
+        return tickets;
+    }
+
     function getTicketInfo(uint256 _ticketID)
         external
         view
         returns (TicketInfo memory)
     {
         return ticketInfo_[_ticketID];
+    }
+
+     /**
+     * @return uint256: Total winning tickets
+     * @return uint8: Final number
+     * @return TicketInfo[]: TicketInfo of winning tickets
+     */
+    function getWinningTickets(
+        uint256 _lotteryId,
+        uint256 _randomNumber,
+        uint256 _firstTicketId
+    )
+        external
+        view
+        onlyLotto
+        returns (
+            uint256,
+            uint8,
+            TicketInfo[] memory
+        )
+    {
+        uint8 finalNumber = uint8(_randomNumber.mod(100));
+        uint256 totalTickets = 0;
+        uint256 winningTicketsLength = 0;
+        for (uint256 i = _firstTicketId; i <= currentTicketId; i++) {
+            if (
+                ticketInfo_[i].numbers == finalNumber &&
+                ticketInfo_[i].lotteryId == _lotteryId
+            ) winningTicketsLength++;
+        }
+        TicketInfo[] memory winningTickets = new TicketInfo[](
+            winningTicketsLength
+        );
+        uint256 j = 0;
+        for (uint256 i = _firstTicketId; i <= currentTicketId; i++) {
+            if (
+                ticketInfo_[i].numbers == finalNumber &&
+                ticketInfo_[i].lotteryId == _lotteryId
+            ) {
+                totalTickets = totalTickets.add(ticketInfo_[i].numberOfTickets);
+
+                winningTickets[j] = (ticketInfo_[i]);
+                j++;
+            }
+        }
+        return (totalTickets, finalNumber, winningTickets);
     }
 
     //-------------------------------------------------------------------------
@@ -136,7 +193,8 @@ contract TicketNFT is ITicketNFT, ERC1155 {
             _to,
             _numbers,
             _lotteryId,
-            _numberOfTickets
+            _numberOfTickets,
+            0
         );
         userTickets_[_to][_lotteryId].push(currentTicketId);
         // Minting the ticket
@@ -145,35 +203,5 @@ contract TicketNFT is ITicketNFT, ERC1155 {
         return ticketId;
     }
 
-    /**
-     * @return uint256: Total winning tickets
-     * @return uint8: Final number
-     * @return TicketInfo[]: TicketInfo of winning tickets
-     */
-    function getWinningTickets(
-        uint256 _lotteryId,
-        uint256 _randomNumber,
-        uint256 _firstTicketId
-    )
-        external
-        onlyLotto
-        returns (
-            uint256,
-            uint8,
-            TicketInfo[] memory
-        )
-    {
-        uint8 finalNumber = uint8(_randomNumber.mod(100));
-        uint256 totalTickets = 0;
-        for (uint256 i = _firstTicketId; i <= currentTicketId; i++) {
-            if (
-                ticketInfo_[i].numbers == finalNumber &&
-                ticketInfo_[i].lotteryId == _lotteryId
-            ) {
-                totalTickets = totalTickets.add(ticketInfo_[i].numberOfTickets);
-                winningTickets.push(ticketInfo_[i]);
-            }
-        }
-        return (totalTickets, finalNumber, winningTickets);
-    }
+   
 }

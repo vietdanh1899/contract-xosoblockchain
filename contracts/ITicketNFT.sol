@@ -10,6 +10,7 @@ interface ITicketNFT {
         uint8 numbers;
         uint256 lotteryId;
         uint8 numberOfTickets;
+        uint256 winAmount;
     }
 
     //-------------------------------------------------------------------------
