@@ -272,11 +272,7 @@ contract Lottery is ILottery, Ownable, Initializable, ReentrancyGuard {
      * @param _lotteryId: lottery id
      * @dev Callable by operator
      */
-    function closeLottery(uint256 _lotteryId)
-        external
-        onlyOperator
-        
-    {
+    function closeLottery(uint256 _lotteryId) external onlyOperator {
         require(
             allLotteries_[_lotteryId].lotteryStatus == Status.Open,
             "Lottery not open"
@@ -298,7 +294,7 @@ contract Lottery is ILottery, Ownable, Initializable, ReentrancyGuard {
         uint256 _lotteryId,
         bytes32 _requestId,
         uint256 _randomNumber
-    ) external onlyRandomGenerator {
+    ) external onlyRandomGenerator nonReentrant {
         // Checks that the lottery is past the closing block
         require(
             allLotteries_[_lotteryId].closingTimestamp <= block.timestamp,
@@ -315,7 +311,8 @@ contract Lottery is ILottery, Ownable, Initializable, ReentrancyGuard {
             (
                 uint256 totalWinningTickets,
                 uint8 finalNumber,
-                ITicketNFT.TicketInfo[] memory winningTickets
+                ITicketNFT.TicketInfo[] memory winningTickets,
+                uint256[] memory winningTicketIds
             ) = nft_.getWinningTickets(
                     _lotteryId,
                     _randomNumber,
@@ -348,6 +345,12 @@ contract Lottery is ILottery, Ownable, Initializable, ReentrancyGuard {
                         amountToTransferToThisWinner
                     );
                     prizePool_ = prizePool_.sub(amountToTransferToThisWinner);
+
+                    //Save ticket win amount
+                    nft_.setTicketWinAmount(
+                        winningTicketIds[i],
+                        amountToTransferToThisWinner
+                    );
                 }
 
                 // Transfer fee to treasury address

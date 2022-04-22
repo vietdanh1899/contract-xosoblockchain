@@ -105,12 +105,15 @@ contract TicketNFT is ITicketNFT, ERC1155 {
         return userTickets;
     }
 
-    function getUserTicketsAllRound(address _user) external view returns (TicketInfo[][] memory) {
+    function getUserTicketsAllRound(address _user)
+        external
+        view
+        returns (TicketInfo[][] memory)
+    {
         uint256 currentLotteryId = lotteryContract_.viewCurrentLotteryId();
         TicketInfo[][] memory tickets = new TicketInfo[][](currentLotteryId);
         for (uint256 i = 1; i <= currentLotteryId; i++) {
-            tickets[i-1] = getUserTickets(i, _user);
-            //new TicketInfo[](userTickets_[_user][i].length);
+            tickets[i - 1] = getUserTickets(i, _user);
         }
         return tickets;
     }
@@ -123,7 +126,7 @@ contract TicketNFT is ITicketNFT, ERC1155 {
         return ticketInfo_[_ticketID];
     }
 
-     /**
+    /**
      * @return uint256: Total winning tickets
      * @return uint8: Final number
      * @return TicketInfo[]: TicketInfo of winning tickets
@@ -139,7 +142,8 @@ contract TicketNFT is ITicketNFT, ERC1155 {
         returns (
             uint256,
             uint8,
-            TicketInfo[] memory
+            TicketInfo[] memory,
+            uint256[] memory
         )
     {
         uint8 finalNumber = uint8(_randomNumber.mod(100));
@@ -154,6 +158,7 @@ contract TicketNFT is ITicketNFT, ERC1155 {
         TicketInfo[] memory winningTickets = new TicketInfo[](
             winningTicketsLength
         );
+        uint256[] memory winningTicketIds = new uint256[](winningTicketsLength);
         uint256 j = 0;
         for (uint256 i = _firstTicketId; i <= currentTicketId; i++) {
             if (
@@ -163,10 +168,11 @@ contract TicketNFT is ITicketNFT, ERC1155 {
                 totalTickets = totalTickets.add(ticketInfo_[i].numberOfTickets);
 
                 winningTickets[j] = (ticketInfo_[i]);
+                winningTicketIds[j] = i;
                 j++;
             }
         }
-        return (totalTickets, finalNumber, winningTickets);
+        return (totalTickets, finalNumber, winningTickets, winningTicketIds);
     }
 
     //-------------------------------------------------------------------------
@@ -203,5 +209,10 @@ contract TicketNFT is ITicketNFT, ERC1155 {
         return ticketId;
     }
 
-   
+    function setTicketWinAmount(uint256 ticketId, uint256 amount)
+        external
+        onlyLotto
+    {
+        ticketInfo_[ticketId].winAmount = amount;
+    }
 }

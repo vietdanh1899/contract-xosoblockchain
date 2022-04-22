@@ -91,8 +91,7 @@ describe("Test lottery contract", () => {
             );
 
             const tickets = await ticketNftInstance.getUserTicketsAllRound(addr[1]);
-            console.log(tickets);
-            assert.equal(1, tickets[0][0].lotteryId)
+            assert.equal(1, tickets[0][0].lotteryId);
         });
     });
 

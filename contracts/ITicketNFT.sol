@@ -41,6 +41,20 @@ interface ITicketNFT {
         view
         returns (TicketInfo memory);
 
+    function getWinningTickets(
+        uint256 _lotteryId,
+        uint256 _randomNumber,
+        uint256 _firstTicketId
+    )
+        external
+        view
+        returns (
+            uint256 totalTickets,
+            uint8 finalNumber,
+            TicketInfo[] memory,
+            uint256[] memory
+        );
+
     //-------------------------------------------------------------------------
     // STATE MODIFYING FUNCTIONS
     //-------------------------------------------------------------------------
@@ -52,15 +66,5 @@ interface ITicketNFT {
         uint8 _numbers
     ) external returns (uint256);
 
-    function getWinningTickets(
-        uint256 _lotteryId,
-        uint256 _randomNumber,
-        uint256 _firstTicketId
-    )
-        external
-        returns (
-            uint256 totalTickets,
-            uint8 finalNumber,
-            TicketInfo[] memory
-        );
+    function setTicketWinAmount(uint256 ticketId, uint256 amount) external;
 }

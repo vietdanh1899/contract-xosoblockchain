@@ -10,7 +10,7 @@ const {
     expectRevert, // Assertions for transactions that should fail
     time
 } = require('@openzeppelin/test-helpers');
-const { expect } = require('chai');
+const { expect, assert } = require('chai');
 
 const TOLERANCE_SECONDS = new BN(1);
 
@@ -60,6 +60,39 @@ describe("Test close lottery", () => {
     });
 
     it("normal case", async function () {
+        await usdtInstance.mint(addr[1], web3.utils.toWei('10'));
+        const balance = await usdtInstance.balanceOf(addr[1]);
+        expect(balance.toString()).to.equal(web3.utils.toWei('10'));
+        // Getting the price to buy
+        let price = await lotteryInstance.costToBuyTickets(
+            1,
+            1
+        );
+        // Generating chosen numbers for buy
+        let ticketNumbers = lotto.draw.random;
+        // Approving lotto to spend cost
+        await usdtInstance.approve(
+            lotteryInstance.address,
+            price,
+            { from: addr[1] }
+        );
+        // Batch buying tokens
+        const buyLog = await lotteryInstance.buyTickets(
+            1,
+            1,
+            ticketNumbers,
+            { from: addr[1] }
+        );
+        truffleAssert.eventEmitted(buyLog, lotto.events.prize, (ev) => {
+            return ev.currentPrizePool == web3.utils.toWei('1')
+                && ev.currentLotteryId == 1;
+        });
+        // Testing results
+        assert.equal(
+            price.toString(),
+            web3.utils.toWei(lotto.newLotto.cost),
+            "Incorrect cost for batch buy of 1"
+        );
         let start = await time.latest();
 
         await time.increase(time.duration.seconds(lotto.newLotto.closeIncrease));
@@ -91,10 +124,17 @@ describe("Test close lottery", () => {
             lotto.newLotto.blankWinningNumbers,
             "Winning numbers set before call"
         );
+        console.log(lotteryInfoAfter.winningNumbers.toString());
         assert.equal(
             lotteryInfoAfter.winningNumbers.toString(),
             lotto.draw.random,
             "Winning numbers incorrect after"
+        );
+
+        const tickets = await ticketNftInstance.getUserTicketsAllRound(addr[1]);
+        assert.equal(tickets[0][0].lotteryId, 1);
+        assert.equal(tickets[0][0].winAmount,
+            web3.utils.toWei('' + lotto.newLotto.cost * (10000 - lotto.newLotto.treasury) / 10000).toString()
         );
     });
 });
