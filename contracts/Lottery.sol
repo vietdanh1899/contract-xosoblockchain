@@ -72,7 +72,12 @@ contract Lottery is ILottery, Ownable, Initializable, ReentrancyGuard {
 
     event LotteryOpen(uint256 lotteryId, uint256 ticketSupply);
 
-    event LotteryClose(uint256 lotteryId, uint256 ticketSupply);
+    event LotteryClose(
+        uint256 lotteryId,
+        uint256 ticketSupply,
+        uint8 finalNumber,
+        ITicketNFT.TicketInfo[] winningTickets
+    );
 
     event PrizePoolChanged(uint256 currentPrizePool, uint256 currentLotteryId);
 
@@ -361,9 +366,14 @@ contract Lottery is ILottery, Ownable, Initializable, ReentrancyGuard {
             // Set lottery status completed
             allLotteries_[_lotteryId].lotteryStatus = Status.Completed;
             allLotteries_[_lotteryId].winningNumbers = finalNumber;
-        }
 
-        emit LotteryClose(_lotteryId, nft_.getCurrentTicketId());
+            emit LotteryClose(
+                _lotteryId,
+                nft_.getCurrentTicketId(),
+                finalNumber,
+                winningTickets
+            );
+        } else revert();
     }
 
     /**
