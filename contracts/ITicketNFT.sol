@@ -55,6 +55,11 @@ interface ITicketNFT {
             uint256[] memory
         );
 
+    function getTickets(uint256[] memory ticketIds)
+        external
+        view
+        returns (TicketInfo[] memory);
+
     //-------------------------------------------------------------------------
     // STATE MODIFYING FUNCTIONS
     //-------------------------------------------------------------------------

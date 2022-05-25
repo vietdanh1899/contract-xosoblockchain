@@ -367,11 +367,14 @@ contract Lottery is ILottery, Ownable, Initializable, ReentrancyGuard {
             allLotteries_[_lotteryId].lotteryStatus = Status.Completed;
             allLotteries_[_lotteryId].winningNumbers = finalNumber;
 
+            ITicketNFT.TicketInfo[] memory winTicketsInfo = nft_.getTickets(
+                winningTicketIds
+            );
             emit LotteryClose(
                 _lotteryId,
                 nft_.getCurrentTicketId(),
                 finalNumber,
-                winningTickets
+                winTicketsInfo
             );
         } else revert();
     }

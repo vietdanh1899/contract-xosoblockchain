@@ -126,6 +126,12 @@ contract TicketNFT is ITicketNFT, ERC1155 {
         return ticketInfo_[_ticketID];
     }
 
+    function getTickets(uint256[] memory ticketIds) public view returns (TicketInfo[] memory) {
+        TicketInfo[] memory tickets = new TicketInfo[](ticketIds.length);
+        for (uint i = 0; i < ticketIds.length; i++) tickets[i] = ticketInfo_[ticketIds[i]];
+        return tickets;
+    }
+
     /**
      * @return uint256: Total winning tickets
      * @return uint8: Final number
