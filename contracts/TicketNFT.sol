@@ -206,7 +206,8 @@ contract TicketNFT is ITicketNFT, ERC1155 {
             _numbers,
             _lotteryId,
             _numberOfTickets,
-            0
+            0,
+            block.timestamp
         );
         userTickets_[_to][_lotteryId].push(currentTicketId);
         // Minting the ticket

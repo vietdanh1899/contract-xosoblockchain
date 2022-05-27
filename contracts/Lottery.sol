@@ -153,6 +153,13 @@ contract Lottery is ILottery, Ownable, Initializable, ReentrancyGuard {
         return allLotteries_[currentLotteryId_];
     }
 
+    function getAllLotteries() public view returns (LottoInfo[] memory) {
+        LottoInfo[] memory allL = new LottoInfo[](currentLotteryId_);
+        for (uint256 i = 1; i <= currentLotteryId_; i++)
+            allL[i] = allLotteries_[i];
+        return allL;
+    }
+
     /**
      * @notice View current lottery id
      */

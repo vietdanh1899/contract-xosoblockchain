@@ -6,11 +6,12 @@ import "@openzeppelin/contracts/token/ERC1155/IERC1155.sol";
 interface ITicketNFT {
     // Storage for ticket information
     struct TicketInfo {
-        address owner;
-        uint8 numbers;
-        uint256 lotteryId;
-        uint8 numberOfTickets;
-        uint256 winAmount;
+        address owner;  // Address of owner who buy this ticket
+        uint8 numbers;  // Two chosen digits number
+        uint256 lotteryId;  // LotteryId that this ticket belong to
+        uint8 numberOfTickets;  // Number of tickets
+        uint256 winAmount;  // Amount this ticket win
+        uint256 buyAt;  // The time buy ticket
     }
 
     //-------------------------------------------------------------------------

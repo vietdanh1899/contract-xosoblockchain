@@ -3,8 +3,9 @@ pragma solidity ^0.8.0;
 
 import "@chainlink/contracts/src/v0.8/VRFConsumerBase.sol";
 import "./ILottery.sol";    
+import "./IRandomNumberGenerator.sol";
 
-contract RandomNumberGenerator is VRFConsumerBase {
+contract RandomNumberGenerator is IRandomNumberGenerator, VRFConsumerBase {
     
     bytes32 internal keyHash;
     uint256 internal fee;

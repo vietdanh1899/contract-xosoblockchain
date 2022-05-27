@@ -29,7 +29,7 @@ module.exports = async function (deployer) {
     web3.utils.toWei(lotto.chainLink.fee)
   );
   let ticketNftInstance = await ticketNftContract.new(
-    "https://testing.com/tokens/\{id\}",
+    "https://xosoblockchain.tech/api/tokens/\{id\}",
     lotteryInstance.address
   );
   // Final set up of contracts
@@ -48,12 +48,14 @@ module.exports = async function (deployer) {
   var lotteryLog = { Label: "Deployed Lottery Address", Info: lotteryInstance.address };
   var lotteryNftLog = { Label: "Deployed Ticket NFT Address", Info: ticketNftInstance.address };
   var linkLog = { Label: "Deployed Mock lINK Address", Info: linkInstance.address };
+  var vrfCoordLog = { Label: "Deploy Mock VRF Coord Address", Info: mock_vrfCoordInstance.address};
 
   console.table([
     lotteryLog,
     lotteryNftLog,
     usdtLog,
-    linkLog
+    linkLog,
+    vrfCoordLog
   ]);
   
   lotto.contractAddress.lottery = lotteryInstance.address;
