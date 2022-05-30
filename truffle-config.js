@@ -72,7 +72,7 @@ module.exports = {
       production: true    // Treats this network as if it was a public net. (default: false)
     },
     matic: {
-      provider: () => new HDWalletProvider(mnemonic, `https://rpc-mumbai.maticvigil.com/v1/6a9209d925303d14c00faadc70cc381f9e26af14`),
+      provider: () => new HDWalletProvider(mnemonic, `https://polygon-mumbai.g.alchemy.com/v2/Ep089YR5-bAm6UkaYHbLCYi-a17iY-mn`),
       network_id: 80001,
       confirmations: 2,
       timeoutBlocks: 200,

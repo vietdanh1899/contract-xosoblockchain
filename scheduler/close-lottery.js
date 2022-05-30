@@ -9,13 +9,14 @@ module.exports = async function (callback) {
     console.log(closeLog.logs[0]);
     let requestId = closeLog.logs[0].args.requestId.toString();
 
-    // Mocking the VRF Coordinator contract for random request fulfilment 
-    await mock_vrfCoordInstance.callBackWithRandomness(
-        requestId,
-        lotto.draw.random,
-        randGenInstance.address,
-        { from: addr[0] }
-    );
+    // // Mocking the VRF Coordinator contract for random request fulfilment 
+    // await mock_vrfCoordInstance.callBackWithRandomness(
+    //     requestId,
+    //     lotto.draw.random,
+    //     randGenInstance.address,
+    //     { from: addr[0] }
+    // );
+    console.log('requestId : ',requestId);
 
     callback();
 }

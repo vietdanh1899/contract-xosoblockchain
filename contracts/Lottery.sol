@@ -128,6 +128,11 @@ contract Lottery is ILottery, Ownable, Initializable, ReentrancyGuard {
         randomGenerator_ = IRandomNumberGenerator(_IRandomNumberGenerator);
     }
 
+    function setUsdtAddress(address _usdt) external onlyOwner {
+        require(_usdt != address(0), "Contracts cannot be 0 address");
+        usdt_ = IERC20(_usdt);
+    }
+
     //-------------------------------------------------------------------------
     // VIEW FUNCTIONS
     //-------------------------------------------------------------------------

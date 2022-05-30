@@ -1,18 +1,18 @@
 {
     "contractAddress": {
-        "lottery": "0xb7CAa31f910b33Ab1C69d929A7141f25182faB93",
-        "ticketNft": "0x3E715a798E756EeeaBae856a8E7b4e855C45B8Ed",
-        "usdt": "0x2d7882bedcbfddce29ba99965dd3cdf7fcb10a1e",
+        "lottery": "0x9bdf472D91BB79a9a4601Cd0D4B6a5ca59aA90FE",
+        "ticketNft": "0xA6Be23C0740cB76a5A9d13f9578F955412d47225",
+        "usdt": "0x953653fc7916A7A9aAF7A713adB548c2C1F18B9d",
         "link": "0x326C977E6efc84E512bB9C30f76E30c160eD06FB",
         "vrfCoord": "0x8C7382F9D8f56b33781fE506E897a4F1e2d17255",
-        "randGen": "0xE945EdF4491De00e32d3eE18E13208d1DDE30762"
+        "randGen": "0xE07138Cd4F93AA0CEC62f341F9e1582d66c8dAcb"
     },
     "chainLink": {
         "keyHash": "0x6e75b569a01ef56d18cab6a8e71e6600d6ce853834d4a5748b720d06f878b3a4",
         "fee": "0.0001"
     },
     "newLotto": {
-        "cost": "0.1",
+        "cost": "1",
         "closeIncrease": 86400,
         "treasury": 2000,
         "blankWinningNumbers": 111
