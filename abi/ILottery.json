@@ -1,0 +1,502 @@
+{
+  "contractName": "ILottery",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_lotteryId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "_requestId",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_randomNumber",
+          "type": "uint256"
+        }
+      ],
+      "name": "numbersDrawn",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "viewCurrentLotteryId",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.14+commit.80d49f37\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_lotteryId\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"_requestId\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"_randomNumber\",\"type\":\"uint256\"}],\"name\":\"numbersDrawn\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"viewCurrentLotteryId\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"viewCurrentLotteryId()\":{\"notice\":\"View current lottery id\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/ILottery.sol\":\"ILottery\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/ILottery.sol\":{\"keccak256\":\"0xa6382e1515208efc115deebdfec3402824fa842d54e030cab6bfb599ac5957a8\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://99e2bd800984f6ca58aed8aed9c0ad3198154f0ee58e20f53184305a1858c489\",\"dweb:/ipfs/QmWnqEuCpVrFzGPfAtdPK9kUfecB8V7oLsU5EQrTm3835s\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "//SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ninterface ILottery {\r\n    //-------------------------------------------------------------------------\r\n    // VIEW FUNCTIONS\r\n    //-------------------------------------------------------------------------\r\n\r\n    //-------------------------------------------------------------------------\r\n    // STATE MODIFYING FUNCTIONS\r\n    //-------------------------------------------------------------------------\r\n\r\n    function numbersDrawn(\r\n        uint256 _lotteryId,\r\n        bytes32 _requestId,\r\n        uint256 _randomNumber\r\n    ) external;\r\n\r\n    /**\r\n     * @notice View current lottery id\r\n     */\r\n    function viewCurrentLotteryId() external view returns (uint256);\r\n}\r\n",
+  "sourcePath": "D:\\contract-xosoblockchain\\contracts\\ILottery.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/ILottery.sol",
+    "exportedSymbols": {
+      "ILottery": [
+        3576
+      ]
+    },
+    "id": 3577,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 3560,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "32:23:21"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "ILottery",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 3576,
+        "linearizedBaseContracts": [
+          3576
+        ],
+        "name": "ILottery",
+        "nameLocation": "69:8:21",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "functionSelector": "e97fc162",
+            "id": 3569,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "numbersDrawn",
+            "nameLocation": "479:12:21",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3567,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3562,
+                  "mutability": "mutable",
+                  "name": "_lotteryId",
+                  "nameLocation": "510:10:21",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3569,
+                  "src": "502:18:21",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3561,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "502:7:21",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3564,
+                  "mutability": "mutable",
+                  "name": "_requestId",
+                  "nameLocation": "539:10:21",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3569,
+                  "src": "531:18:21",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 3563,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "531:7:21",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3566,
+                  "mutability": "mutable",
+                  "name": "_randomNumber",
+                  "nameLocation": "568:13:21",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3569,
+                  "src": "560:21:21",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3565,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "560:7:21",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "491:97:21"
+            },
+            "returnParameters": {
+              "id": 3568,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "597:0:21"
+            },
+            "scope": 3576,
+            "src": "470:128:21",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 3570,
+              "nodeType": "StructuredDocumentation",
+              "src": "606:52:21",
+              "text": " @notice View current lottery id"
+            },
+            "functionSelector": "80a06160",
+            "id": 3575,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "viewCurrentLotteryId",
+            "nameLocation": "673:20:21",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3571,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "693:2:21"
+            },
+            "returnParameters": {
+              "id": 3574,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3573,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3575,
+                  "src": "719:7:21",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3572,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "719:7:21",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "718:9:21"
+            },
+            "scope": 3576,
+            "src": "664:64:21",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 3577,
+        "src": "59:672:21",
+        "usedErrors": []
+      }
+    ],
+    "src": "32:701:21"
+  },
+  "legacyAST": {
+    "absolutePath": "project:/contracts/ILottery.sol",
+    "exportedSymbols": {
+      "ILottery": [
+        3576
+      ]
+    },
+    "id": 3577,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 3560,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "32:23:21"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "ILottery",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 3576,
+        "linearizedBaseContracts": [
+          3576
+        ],
+        "name": "ILottery",
+        "nameLocation": "69:8:21",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "functionSelector": "e97fc162",
+            "id": 3569,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "numbersDrawn",
+            "nameLocation": "479:12:21",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3567,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3562,
+                  "mutability": "mutable",
+                  "name": "_lotteryId",
+                  "nameLocation": "510:10:21",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3569,
+                  "src": "502:18:21",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3561,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "502:7:21",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3564,
+                  "mutability": "mutable",
+                  "name": "_requestId",
+                  "nameLocation": "539:10:21",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3569,
+                  "src": "531:18:21",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 3563,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "531:7:21",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3566,
+                  "mutability": "mutable",
+                  "name": "_randomNumber",
+                  "nameLocation": "568:13:21",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3569,
+                  "src": "560:21:21",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3565,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "560:7:21",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "491:97:21"
+            },
+            "returnParameters": {
+              "id": 3568,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "597:0:21"
+            },
+            "scope": 3576,
+            "src": "470:128:21",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 3570,
+              "nodeType": "StructuredDocumentation",
+              "src": "606:52:21",
+              "text": " @notice View current lottery id"
+            },
+            "functionSelector": "80a06160",
+            "id": 3575,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "viewCurrentLotteryId",
+            "nameLocation": "673:20:21",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3571,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "693:2:21"
+            },
+            "returnParameters": {
+              "id": 3574,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3573,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3575,
+                  "src": "719:7:21",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3572,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "719:7:21",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "718:9:21"
+            },
+            "scope": 3576,
+            "src": "664:64:21",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 3577,
+        "src": "59:672:21",
+        "usedErrors": []
+      }
+    ],
+    "src": "32:701:21"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.14+commit.80d49f37.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.5",
+  "updatedAt": "2022-05-30T07:34:50.373Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {
+      "viewCurrentLotteryId()": {
+        "notice": "View current lottery id"
+      }
+    },
+    "version": 1
+  }
+}

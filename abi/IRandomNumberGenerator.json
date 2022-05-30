@@ -1,0 +1,323 @@
+{
+  "contractName": "IRandomNumberGenerator",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "lotteryId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getRandomNumber",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "requestId",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.14+commit.80d49f37\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"lotteryId\",\"type\":\"uint256\"}],\"name\":\"getRandomNumber\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"requestId\",\"type\":\"bytes32\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"getRandomNumber(uint256)\":{\"notice\":\"Requests randomness from a user-provided seed\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/IRandomNumberGenerator.sol\":\"IRandomNumberGenerator\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/IRandomNumberGenerator.sol\":{\"keccak256\":\"0xd249088b6327e6980cbfeee579d084ecc6ab3b9a2b9d923e45ceec3f2a5b70ac\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://e94b73d024d489ff286432dbdf70d264d9362dea98700583acbfb2f72625d607\",\"dweb:/ipfs/QmaQdbYetUSFsue9FAvXjgpeYfTY6JdrKELHTnD5tAPoJA\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "//SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ninterface IRandomNumberGenerator {\r\n\r\n    /** \r\n     * Requests randomness from a user-provided seed\r\n     */\r\n    function getRandomNumber(\r\n        uint256 lotteryId\r\n    ) \r\n        external \r\n        returns (bytes32 requestId);\r\n}",
+  "sourcePath": "D:\\contract-xosoblockchain\\contracts\\IRandomNumberGenerator.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/IRandomNumberGenerator.sol",
+    "exportedSymbols": {
+      "IRandomNumberGenerator": [
+        3587
+      ]
+    },
+    "id": 3588,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 3578,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "32:23:22"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IRandomNumberGenerator",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 3587,
+        "linearizedBaseContracts": [
+          3587
+        ],
+        "name": "IRandomNumberGenerator",
+        "nameLocation": "69:22:22",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "documentation": {
+              "id": 3579,
+              "nodeType": "StructuredDocumentation",
+              "src": "101:67:22",
+              "text": " Requests randomness from a user-provided seed"
+            },
+            "functionSelector": "b37217a4",
+            "id": 3586,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getRandomNumber",
+            "nameLocation": "183:15:22",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3582,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3581,
+                  "mutability": "mutable",
+                  "name": "lotteryId",
+                  "nameLocation": "217:9:22",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3586,
+                  "src": "209:17:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3580,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "209:7:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "198:35:22"
+            },
+            "returnParameters": {
+              "id": 3585,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3584,
+                  "mutability": "mutable",
+                  "name": "requestId",
+                  "nameLocation": "280:9:22",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3586,
+                  "src": "272:17:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 3583,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "272:7:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "271:19:22"
+            },
+            "scope": 3587,
+            "src": "174:117:22",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 3588,
+        "src": "59:235:22",
+        "usedErrors": []
+      }
+    ],
+    "src": "32:262:22"
+  },
+  "legacyAST": {
+    "absolutePath": "project:/contracts/IRandomNumberGenerator.sol",
+    "exportedSymbols": {
+      "IRandomNumberGenerator": [
+        3587
+      ]
+    },
+    "id": 3588,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 3578,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "32:23:22"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IRandomNumberGenerator",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 3587,
+        "linearizedBaseContracts": [
+          3587
+        ],
+        "name": "IRandomNumberGenerator",
+        "nameLocation": "69:22:22",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "documentation": {
+              "id": 3579,
+              "nodeType": "StructuredDocumentation",
+              "src": "101:67:22",
+              "text": " Requests randomness from a user-provided seed"
+            },
+            "functionSelector": "b37217a4",
+            "id": 3586,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getRandomNumber",
+            "nameLocation": "183:15:22",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3582,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3581,
+                  "mutability": "mutable",
+                  "name": "lotteryId",
+                  "nameLocation": "217:9:22",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3586,
+                  "src": "209:17:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3580,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "209:7:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "198:35:22"
+            },
+            "returnParameters": {
+              "id": 3585,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3584,
+                  "mutability": "mutable",
+                  "name": "requestId",
+                  "nameLocation": "280:9:22",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3586,
+                  "src": "272:17:22",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 3583,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "272:7:22",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "271:19:22"
+            },
+            "scope": 3587,
+            "src": "174:117:22",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 3588,
+        "src": "59:235:22",
+        "usedErrors": []
+      }
+    ],
+    "src": "32:262:22"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.14+commit.80d49f37.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.5",
+  "updatedAt": "2022-05-30T07:34:50.375Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {
+      "getRandomNumber(uint256)": {
+        "notice": "Requests randomness from a user-provided seed"
+      }
+    },
+    "version": 1
+  }
+}
