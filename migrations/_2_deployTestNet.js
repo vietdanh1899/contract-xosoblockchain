@@ -1,7 +1,7 @@
 const ticketNftContract = artifacts.require("TicketNFT");
 const lotteryContract = artifacts.require("Lottery");
 const randGenContract = artifacts.require("RandomNumberGenerator");
-const mock_erc20Contract = artifacts.require("ERC20Mock");
+const UsdtMockContract = artifacts.require("UsdtMock");
 
 const settings = require("../settings.json")
 
@@ -9,7 +9,7 @@ module.exports = async function (deployer) {
   let addr = await web3.eth.getAccounts();
   var initialMoney = web3.utils.toWei('100');
 
-  let usdtInstance = await mock_erc20Contract.new("USD Tether", "USDT", addr[0], initialMoney);
+  let usdtInstance = await UsdtMockContract.new("USD Tether", "USDT", addr[0], initialMoney);
   let lotteryInstance = await lotteryContract.new(
     usdtInstance.address,
   );

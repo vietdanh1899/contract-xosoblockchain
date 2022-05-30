@@ -66,13 +66,13 @@ module.exports = {
     // skipDryRun: true     // Skip dry run before migrations? (default: false for public nets )
     // },
     // Useful for private networks
-    private: {
-      provider: () => new HDWalletProvider(mnemonic, `HTTP://0.0.0.0:8545`),
-      network_id: 5777,   // This network is yours, in the cloud.
-      production: true    // Treats this network as if it was a public net. (default: false)
-    },
+    // private: {
+    //   provider: () => new HDWalletProvider(mnemonic, `HTTP://0.0.0.0:8545`),
+    //   network_id: 5777,   // This network is yours, in the cloud.
+    //   production: true    // Treats this network as if it was a public net. (default: false)
+    // },
     matic: {
-      provider: () => new HDWalletProvider(mnemonic, `https://polygon-mumbai.g.alchemy.com/v2/Ep089YR5-bAm6UkaYHbLCYi-a17iY-mn`),
+      provider: () => new HDWalletProvider(mnemonic, `https://rpc-mumbai.maticvigil.com/v1/6a9209d925303d14c00faadc70cc381f9e26af14`),
       network_id: 80001,
       confirmations: 2,
       timeoutBlocks: 200,
