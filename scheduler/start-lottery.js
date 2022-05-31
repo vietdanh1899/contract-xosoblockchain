@@ -10,7 +10,7 @@ module.exports = async function (callback) {
     // Converting to a BigNumber for manipulation 
     let timeStamp = new BigNumber(currentTime.toString());
     const startLog = await lotteryInstance.startLottery(
-        web3.utils.toWei(lotto.newLotto.cost),
+        web3.utils.toWei(lotto.newLotto.cost, "picoether"),
         timeStamp.plus(lotto.newLotto.closeIncrease).toString(),
         lotto.newLotto.treasury
     );

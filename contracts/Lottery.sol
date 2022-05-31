@@ -299,10 +299,10 @@ contract Lottery is ILottery, Ownable, Initializable, ReentrancyGuard {
             "Lottery not over"
         );
 
-        allLotteries_[_lotteryId].lotteryStatus = Status.Closed;
-
         // Request a random number from the generator
         requestId_ = randomGenerator_.getRandomNumber(_lotteryId);
+
+        allLotteries_[_lotteryId].lotteryStatus = Status.Closed;
 
         emit RequestNumbers(_lotteryId, requestId_);
     }

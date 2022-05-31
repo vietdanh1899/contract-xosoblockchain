@@ -1,11 +1,11 @@
 {
     "contractAddress": {
-        "lottery": "0x0B1e012ECa26792b09904B52bE2B75b14f9AD4bb",
-        "ticketNft": "0x24dcBef3ABb41Ca5f20aEd34057bf6C9ec785B79",
+        "lottery": "0xA06ACC8E0f7E2a580028Fe94F29F5da4b95fA6B6",
+        "ticketNft": "0xeEaAa2913c11A34960A416d6A7cfa2a5d8A46258",
         "usdt": "0x33F3DE2E4f4Af727839D6C7bE05B7b1EB291ccE6",
         "link": "0x326C977E6efc84E512bB9C30f76E30c160eD06FB",
         "vrfCoord": "0x8C7382F9D8f56b33781fE506E897a4F1e2d17255",
-        "randGen": "0x66454f6Ac6dA72214Bd851b59448C72b8784AC44"
+        "randGen": "0x5A61f4e3D31915C7baB154AEb73b597118819cF9"
     },
     "chainLink": {
         "keyHash": "0x6e75b569a01ef56d18cab6a8e71e6600d6ce853834d4a5748b720d06f878b3a4",
@@ -20,7 +20,7 @@
     "events": {
         "new": "LotteryOpen",
         "mint": "NewBatchMint",
-        "request": "requestNumbers",
+        "request": "RequestNumbers",
         "prize": "PrizePoolChanged"
     },
     "draw": {

@@ -1,7 +1,7 @@
 const BigNumber = require("bignumber.js");
 const lotteryContract = artifacts.require("Lottery");
 const usdt = artifacts.require("ERC20");
-const lotto = require("./settings.json")
+const lotto = require("../settings.json")
 
 module.exports = async function (callback) {
     lotteryInstance = await lotteryContract.at(lotto.contractAddress.lottery);

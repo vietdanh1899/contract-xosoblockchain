@@ -8,7 +8,7 @@ const mock_vrfCoordContract = artifacts.require("Mock_VRFCoordinator");
 const lotto = require("../settings.json")
 
 module.exports = async function (deployer) {
-  var initialMoney = web3.utils.toWei('100');
+  var initialMoney = web3.utils.toWei('100', 'picoether');
   let addr = await web3.eth.getAccounts();
   let usdtInstance = await UsdtMockContract.new("USD Tether", "USDT", addr[0], initialMoney);
   let linkInstance = await mock_erc20Contract.new(

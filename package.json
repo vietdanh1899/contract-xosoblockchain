@@ -7,7 +7,8 @@
   "scripts": {
     "start-lottery": "truffle exec ./scheduler/start-lottery.js",
     "close-lottery": "truffle exec ./scheduler/close-lottery.js",
-    "test-close-lottery": "truffle exec ./scheduler/test-close-lottery.js"
+    "test-close-lottery": "truffle exec ./scheduler/test-close-lottery.js",
+    "get-info": "truffle exec ./scripts/testGetInfo.js"
   },
   "dependencies": {
     "@chainlink/contracts": "^0.4.0",
