@@ -1,11 +1,11 @@
 {
     "contractAddress": {
-        "lottery": "0xb7CAa31f910b33Ab1C69d929A7141f25182faB93",
-        "ticketNft": "0x3E715a798E756EeeaBae856a8E7b4e855C45B8Ed",
+        "lottery": "0x160Ce68e249058B47db2EeA094B14547430B0D37",
+        "ticketNft": "0x953653fc7916A7A9aAF7A713adB548c2C1F18B9d",
         "usdt": "0x56f0fF61ACf23A2eb3f7082D5CD8be94fbb36A4a",
         "link": "0x84b9B910527Ad5C03A9Ca831909E21e236EA7b06",
         "vrfCoord": "0xa555fC018435bef5A13C6c6870a9d4C11DEC329C",
-        "randGen": "0xE945EdF4491De00e32d3eE18E13208d1DDE30762"
+        "randGen": "0xCbb5C0d2d8efbB9d8d61A702228eb43aa8432551"
     },
     "chainLink": {
         "keyHash": "0xcaf3c3727e033261d383b315559476f48034c13b18f8cafed4d871abe5049186",
