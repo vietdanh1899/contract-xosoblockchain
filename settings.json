@@ -1,15 +1,15 @@
 {
     "contractAddress": {
-        "lottery": "0xA06ACC8E0f7E2a580028Fe94F29F5da4b95fA6B6",
-        "ticketNft": "0xeEaAa2913c11A34960A416d6A7cfa2a5d8A46258",
-        "usdt": "0x33F3DE2E4f4Af727839D6C7bE05B7b1EB291ccE6",
-        "link": "0x326C977E6efc84E512bB9C30f76E30c160eD06FB",
-        "vrfCoord": "0x8C7382F9D8f56b33781fE506E897a4F1e2d17255",
-        "randGen": "0x5A61f4e3D31915C7baB154AEb73b597118819cF9"
+        "lottery": "0xb7CAa31f910b33Ab1C69d929A7141f25182faB93",
+        "ticketNft": "0x3E715a798E756EeeaBae856a8E7b4e855C45B8Ed",
+        "usdt": "0x56f0fF61ACf23A2eb3f7082D5CD8be94fbb36A4a",
+        "link": "0x84b9B910527Ad5C03A9Ca831909E21e236EA7b06",
+        "vrfCoord": "0xa555fC018435bef5A13C6c6870a9d4C11DEC329C",
+        "randGen": "0xE945EdF4491De00e32d3eE18E13208d1DDE30762"
     },
     "chainLink": {
-        "keyHash": "0x6e75b569a01ef56d18cab6a8e71e6600d6ce853834d4a5748b720d06f878b3a4",
-        "fee": "0.0001"
+        "keyHash": "0xcaf3c3727e033261d383b315559476f48034c13b18f8cafed4d871abe5049186",
+        "fee": "0.1"
     },
     "newLotto": {
         "cost": "1",

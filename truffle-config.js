@@ -77,6 +77,13 @@ module.exports = {
       confirmations: 2,
       timeoutBlocks: 200,
       skipDryRun: true
+    },
+    bsc: {
+      provider: () => new HDWalletProvider(mnemonic, `wss://speedy-nodes-nyc.moralis.io/190ed8f49a8e09d076a7a81d/bsc/testnet/ws`),
+      network_id: 97,
+      confirmations: 10,
+      timeoutBlocks: 200,
+      skipDryRun: true
     }
   },
 
