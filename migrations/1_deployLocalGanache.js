@@ -12,7 +12,7 @@ module.exports = async function (deployer) {
   let addr = await web3.eth.getAccounts();
   let usdtInstance = await UsdtMockContract.new("USD Tether", "USDT", addr[0], initialMoney);
   let linkInstance = await mock_erc20Contract.new(
-    "Chain LINK", "LINK", addr[0], initialMoney
+    "Chain LINK", "LINK", addr[0], web3.utils.toWei('100')
   );
   let mock_vrfCoordInstance = await mock_vrfCoordContract.new(
     linkInstance.address,
